@@ -46,7 +46,7 @@ class Simulator:
         )
 
         self._init_event_queue()
-        atexit.register(self._write_output)
+        # atexit.register(self._write_output)
 
     @property
     def scheduler(self) -> BaseGlobalScheduler:
@@ -78,6 +78,7 @@ class Simulator:
         assert self._scheduler.is_empty() or self._terminate
 
         logger.info(f"Simulation ended at: {self._time}s")
+        self._write_output()
 
     def _write_output(self) -> None:
         logger.info("Writing output")
